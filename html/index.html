@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <title>Calculadora de juros</title>
+</head>
+<body>
+    <main>
+        <section class="background">
+            <section class="form-section" id="form-container ">
+                <div class="card-form">
+                    <h1>Calculadora de Juros</h1>
+                    <form name="newCountingInformationEntry">
+                        <label for="amount">Valor inicial (Capital):</label>
+                        <input
+                        type="text"
+                        name="amount"
+                        id="amount"
+                        class="enter-input"
+                        autocomplete="off">
+                        <label for="interest-rate">Taxa de juros a.m:</label>
+                        <input type="text"
+                        name="interest-rate"
+                        id="interest-rate"
+                        class="enter-input"
+                        autocomplete="off">
+                        <label for="time">Tempo de rendimento a.m:</label>
+                        <input type="text"
+                        name="time"
+                        id="time"
+                        class="enter-input"
+                        autocomplete="off">
+                        <div class="input-radio">
+                            <div class="set-interest-type">
+                                <input
+                                type="radio"
+                                name="opition-interest"
+                                id="simple-interest"
+                                >
+                                <label
+                                for="simple-interest">Juros simples
+                                <p>O juros simples é calculado com base em um valor fixado chamado de capital inicial. Trata-se de uma porcentagem do capital inicial aplicada durante determinado tempo. A principal característica do juros simples é que o valor não se altera no decorrer dos meses.</p>
+                                </label>
+                            </div>
+                            <div class="set-interest-type">
+                                <input
+                                type="radio"
+                                name="opition-interest"
+                                id="compound-interest"
+                                >
+                                <label
+                                    for="compound-interest">Juros composto
+                                    <p>Os Juros Compostos são calculados levando em conta a atualização do capital, ou seja, o juro incide não apenas no valor inicial, mas também sobre os juros acumulados (juros sobre juros)</p>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="card-result">
+                        <p>Resultado:</p>
+                        <h2 id="result">R$</h2>
+                    </div>
+                    <div class="card-button">
+                        <button id="btnCalc">Calcular</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+<script type="module" src="../script/script.js"></script>
+</html>
