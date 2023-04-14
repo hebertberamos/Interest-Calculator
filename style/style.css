@@ -89,10 +89,20 @@ form label{
 
 .card-result{
     display: flex;
-    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     height: 47px;
     margin-top: 15px;
+}
+
+.result-field{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.separator-div-button{
+    padding: 0 20px 0 15px;
 }
 
 .card-button{
