@@ -1,4 +1,4 @@
-export default function inputsContructor(amount, interestRate, time){
+export default function InputsConstructor(amount, interestRate, time){
     this.amount = amount;
     this.interestRate = interestRate;
     this.time = time;
