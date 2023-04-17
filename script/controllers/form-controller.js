@@ -1,7 +1,8 @@
 import InputsConstructor from '../models/inputs-constructor.js';
 import * as calcController from './calc-controller.js';
 
-// TENTAR PASSAR O VALOR DO RESULTADO NO BOTÃO DE CALCULAR PARA DENTRO DO VIZUALIZADOR DE RESPOSTA
+// VALORES DA DIV SELECIONADO
+// CRIAR A FUNÇÃO QUE VAI ADICIONAR A DIV QUANDO TETAR CLICAR NO BOTÃO E NÃO FOR SELECIONADO UM TIPO DE JUROS
 
 function State() {
 
@@ -9,6 +10,8 @@ function State() {
 
     this.simpleInterest = null;
     this.compoundInterest = null;
+    this.interestTypeSimple = null;
+    this.interestTypeCompound = null;
 
     this.inputAmount = null;
     this.inputInterestRate = null;
@@ -28,6 +31,8 @@ export function init(){
 
     state.simpleInterest = document.getElementById("simple-interest");
     state.compoundInterest = document.getElementById("compound-interest");
+    state.interestTypeSimple = document.getElementById("interest-type-simple");
+    state.interestTypeCompound = document.getElementById("interest-type-compound");
     state.inputAmount = document.getElementById("amount");
     state.inputInterestRate = document.getElementById("interest-rate");
     state.inputTime = document.getElementById("time");
@@ -38,10 +43,12 @@ export function init(){
 
     state.simpleInterest.addEventListener('click', (event) => {
         interestType = 1;
+        removeClassTwoInputRadio();
     });
 
     state.compoundInterest.addEventListener('click', (event) => {
         interestType = 2;
+        removeClassTwoInputRadio();
     });
 
 
@@ -65,6 +72,14 @@ export function init(){
     state.btnCalc.addEventListener('click', (event) => {
         event.preventDefault();
         verifySelectedInterestType();
+
+        if(!interestType == 1 || !interestType == 2){
+            changeClassInputRadio('#interest-type-simple', 'uninformed');
+            changeClassInputRadio('#interest-type-compound', 'uninformed');
+        }
+        else{
+            return;
+        }
     });
 
     
@@ -77,7 +92,6 @@ export function init(){
         const timeNumber = +state.inputsConstructor.time;
         switch(interestType){
             case 1: 
-                console.log("simplificado");
                 const resultSimple = calcController.simpleInteresCalc(amountNumber, interestRateNumber, timeNumber);
                 const resultSimpleFormated = formatingValue(resultSimple);
                 state.result.innerText = resultSimpleFormated;
@@ -87,8 +101,6 @@ export function init(){
                 state.interestIncome.innerText = resultInterestIncomeFormated;
                 break;
             case 2:
-                console.log("composto");
-                
                 const resultCompound = calcController.compoundInterestCalc(amountNumber, interestRateNumber, timeNumber);
                 const resultCompoundFormated = formatingValue(resultCompound);
                 state.result.innerText = resultCompoundFormated;
@@ -107,4 +119,18 @@ export function init(){
         return value.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
     }
 
+    function changeClassInputRadio(key, valueClass){
+        const element = document.querySelector(`${key}`);
+        element.classList.add(valueClass);
+    }
+
+    function removeClassInputRadio(key, valueClass){
+        const element = document.querySelector(`${key}`);
+        element.classList.remove(valueClass);
+    }
+
+    function removeClassTwoInputRadio(){
+        removeClassInputRadio('#interest-type-simple', 'uninformed');
+        removeClassInputRadio('#interest-type-compound', 'uninformed');
+    }
 }
