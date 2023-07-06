@@ -8,7 +8,6 @@ export function simpleInteresCalc(amount, tax, time){
 export function compoundInterestCalc(amount, tax, time){
     const taxRedefined = tax / 100;
     const firstTimeCalc = Math.pow(1+taxRedefined, time); 
-    const secundTimeCalc = amount * firstTimeCalc;
-    const result = amount + secundTimeCalc; 
+    const result = amount * firstTimeCalc;
     return result;
 }
