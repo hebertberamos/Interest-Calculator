@@ -14,25 +14,34 @@
                 <div class="card-form">
                     <h1>Calculadora de Juros</h1>
                     <form name="newCountingInformationEntry">
-                        <label for="amount">Valor inicial (Capital):</label>
-                        <input
-                        type="text"
-                        name="amount"
-                        id="amount"
-                        class="enter-input"
-                        autocomplete="off">
-                        <label for="interest-rate">Taxa de juros a.m:</label>
-                        <input type="text"
-                        name="interest-rate"
-                        id="interest-rate"
-                        class="enter-input"
-                        autocomplete="off">
-                        <label for="time">Tempo de rendimento a.m:</label>
-                        <input type="text"
-                        name="time"
-                        id="time"
-                        class="enter-input"
-                        autocomplete="off">
+                        <div class="card-input">
+                            <label for="amount">Valor inicial (Capital):</label>
+                            <input
+                            type="text"
+                            name="amount"
+                            id="amount"
+                            class="enter-input"
+                            autocomplete="off">
+                            <div class="required-field"><p class="error-paragraph hide">*Compo obrigatório</p></div>
+                        </div>
+                        <div class="card-input">
+                            <label for="interest-rate">Taxa de juros a.m:</label>
+                            <input type="text"
+                            name="interest-rate"
+                            id="interest-rate"
+                            class="enter-input"
+                            autocomplete="off">
+                            <div class="required-field"><p class="error-paragraph hide">*Compo obrigatório</p></div>
+                        </div>
+                        <div class="card-input">
+                            <label for="time">Tempo de rendimento a.m:</label>
+                            <input type="text"
+                            name="time"
+                            id="time"
+                            class="enter-input"
+                            autocomplete="off">
+                            <div class="required-field"><p class="error-paragraph hide">*Compo obrigatório</p></div>
+                        </div>
                         <div class="input-radio">
                             <div class="set-interest-type" id="interest-type-simple">
                                 <input
