@@ -49,8 +49,14 @@ form{
 }
 
 form label{
+    margin-top: 10px;
     font-size: 15px;
     font-weight: lighter;
+}
+
+.card-input{
+    display: flex;
+    flex-direction: column;
 }
 
 .enter-input{
@@ -58,11 +64,23 @@ form label{
     border: none;
     box-shadow: 0px 1px #6021B5;
     margin-top: 7px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     outline: none;
     color: white;
     font-size: 20px;
     height: 30px;
+}
+
+.required-field{
+    height: 20px;
+}
+.required-field > p{
+    margin-top: 5px;
+    color: rgb(252, 144, 144);
+}
+
+.input-radio{
+    padding-top: 15px;
 }
 
 .input-radio label{
@@ -133,4 +151,8 @@ form label{
     background-image: linear-gradient(to right, #85cdee, #7a4db4);
     
     box-shadow: 0px 0px 15px 2px white;
+}
+
+.hide{
+    display: none;
 }

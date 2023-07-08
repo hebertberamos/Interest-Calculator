@@ -1,8 +1,6 @@
 import InputsConstructor from '../models/inputs-constructor.js';
 import * as calcController from './calc-controller.js';
 
-// VALORES DA DIV SELECIONADO
-// CRIAR A FUNÇÃO QUE VAI ADICIONAR A DIV QUANDO TETAR CLICAR NO BOTÃO E NÃO FOR SELECIONADO UM TIPO DE JUROS
 
 function State() {
 
@@ -78,7 +76,37 @@ export function init(){
             changeClassInputRadio('#interest-type-compound', 'uninformed');
         }
         else{
-            return;
+            //  VERIFICAÇÃO DOS INPUTS E SEUS VALORES
+            if(state.inputAmount.value == "" || state.inputInterestRate.value == "" || state.inputTime.value == ""){
+                    var inputs = document.querySelectorAll(".enter-input");
+
+                    //  CASO OS VALORES ESTEJAM VAZIOS OS VALORES CONTINUARAM COMO ZERO
+
+                    //  CAPTURA DOS INPUTS QUE ESTÃO VAZIOS
+                    inputs.forEach((input) => {
+                        if(input.value == ""){
+                            input.classList.add('uninformed');
+                            var parent = input.parentElement;
+                            
+                            // CAPTURANDO ELEMENTO DO P DA DIV FILHA DO INPUT QUE ESTÁ VAZIO
+                            var paragraph = parent.querySelector(".error-paragraph");
+
+                            //  REMOVENDO A CLASSE 'HIDE' DO PARAGRAFO
+                            paragraph.classList.remove('hide');
+                            
+                            //  VERIFICANDO MUDANÇA NOS INPUTS
+                            input.addEventListener('change', () => {
+                                if(input.classList.contains('uninformed')){
+                                    input.classList.remove('uninformed');
+                                    paragraph.classList.add('hide');
+                                } else {
+                                    input.classList.add('uninformed');
+                                    paragraph.classList.remove('hide');
+                                }
+                            });
+                        }   
+                    });
+            }
         }
     });
 
