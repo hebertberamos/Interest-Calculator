@@ -71,42 +71,47 @@ export function init(){
         event.preventDefault();
         verifySelectedInterestType();
 
-        if(!interestType == 1 || !interestType == 2){
-            changeClassInputRadio('#interest-type-simple', 'uninformed');
-            changeClassInputRadio('#interest-type-compound', 'uninformed');
-        }
+        //  VERIFICAÇÃO DOS INPUTS E SEUS VALORES
+        if(state.inputAmount.value == "" || state.inputInterestRate.value == "" || state.inputTime.value == ""){
+            var inputs = document.querySelectorAll(".enter-input");
+
+
+                //  CASO OS VALORES ESTEJAM VAZIOS OS VALORES CONTINUARAM COMO ZERO
+                state.interestIncome.innerText = "R$";
+                state.result.innerText = "R$";
+                //  CAPTURA DOS INPUTS QUE ESTÃO VAZIOS
+                inputs.forEach((input) => {
+                    //  CASO O INPUT ESTEJA VAZIO
+                    if(input.value == ""){
+                        input.classList.add('uninformed');
+                        var parent = input.parentElement;
+                        var paragraph = parent.querySelector(".error-paragraph");
+                        paragraph.classList.remove('hide');
+
+                        //  ADICIONANDO EVENDO PARA VERIFICAR SE O INPUT FOI ALTERADO 
+                        input.addEventListener('change', (e) => {
+                            if(e.target.value == ""){
+
+                                //  SE O INPUT CONTINUAR VAZIO
+                                input.classList.add('uninformed');
+                                paragraph.classList.remove('hide');
+                            } else {
+
+                                //  CASO O INPUT SEJA CORERTAMENTE INFORMADO
+                                input.classList.remove('uninformed');
+                                paragraph.classList.add('hide');
+                            }
+                        });
+                    } 
+                }); // FIM DO IF DO FOREACH
+
+                if(!interestType == 1 || !interestType == 2){
+                    changeClassInputRadio('#interest-type-simple', 'uninformed');
+                    changeClassInputRadio('#interest-type-compound', 'uninformed');
+                }
+        } // FIM DO IF DE VARIFICAÇÃO DOS INPUTS
         else{
-            //  VERIFICAÇÃO DOS INPUTS E SEUS VALORES
-            if(state.inputAmount.value == "" || state.inputInterestRate.value == "" || state.inputTime.value == ""){
-                    var inputs = document.querySelectorAll(".enter-input");
-
-                    //  CASO OS VALORES ESTEJAM VAZIOS OS VALORES CONTINUARAM COMO ZERO
-
-                    //  CAPTURA DOS INPUTS QUE ESTÃO VAZIOS
-                    inputs.forEach((input) => {
-                        if(input.value == ""){
-                            input.classList.add('uninformed');
-                            var parent = input.parentElement;
-                            
-                            // CAPTURANDO ELEMENTO DO P DA DIV FILHA DO INPUT QUE ESTÁ VAZIO
-                            var paragraph = parent.querySelector(".error-paragraph");
-
-                            //  REMOVENDO A CLASSE 'HIDE' DO PARAGRAFO
-                            paragraph.classList.remove('hide');
-                            
-                            //  VERIFICANDO MUDANÇA NOS INPUTS
-                            input.addEventListener('change', () => {
-                                if(input.classList.contains('uninformed')){
-                                    input.classList.remove('uninformed');
-                                    paragraph.classList.add('hide');
-                                } else {
-                                    input.classList.add('uninformed');
-                                    paragraph.classList.remove('hide');
-                                }
-                            });
-                        }   
-                    });
-            }
+            return;
         }
     });
 
